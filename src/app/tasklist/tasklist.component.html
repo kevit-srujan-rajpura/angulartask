@@ -1,0 +1,71 @@
+<div class="container-fulid">
+  <div class="container">
+    <div class="row mt-4">
+      <div class="col"></div>
+      <div class="col-md-8 bg-white">
+        <div class="card bg-secondary">
+          <h1 class="text-white text-center m-3">Task Manager</h1>
+
+          <div class="input-group mb-3 p-3">
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="newItem"
+              placeholder="Add a new task"
+              (keydown.enter)="addTask(newItem)"
+            />
+            <!-- Input field-->
+            <span class="input-group-text">
+              <button (click)="addTask(newItem)" class="btn btn-primary">
+                Add Task
+              </button></span
+            >
+          </div>
+        </div>
+
+        <div class="scroll">
+          <ul *ngFor="let item of list; index as i" class="list-group">
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center margin shadow"
+              (mouseover)="showIcons(item)"
+              (mouseleave)="removeIcons(item)"
+            >
+              <!-- condition false and list is shown-->
+              <div *ngIf="!item.isEdit">{{ item.name }}</div>
+
+              <!-- for true condition input field is open for edit the task-->
+              <div class="input-group m-2">
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="item.name"
+                  *ngIf="item.isEdit"
+                  (keydown.enter)="updateTask(item)"
+                />
+              </div>
+
+              <!--for mouse hover-->
+              <div *ngIf="item.displayIcons">
+                <span class="badge rounded-pill">
+                  <div
+                    class="btn-group"
+                    role="group"
+                    aria-label="Basic outlined example"
+                  >
+                    <button (click)="editTask(item)" class="bgcolor--icon">
+                      <i class="fas fa-pen-square"></i>
+                    </button>
+                    <button (click)="removeTask(i)" class="bgcolor--icon">
+                      <i class="fa fa-trash" id="icon"></i>
+                    </button>
+                  </div>
+                </span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col"></div>
+    </div>
+  </div>
+</div>

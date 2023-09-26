@@ -1,0 +1,29 @@
+.scroll {
+  max-height: 500px;
+  overflow-y: scroll;
+  margin-top: 3rem;
+}
+.margin {
+  margin: 5px;
+  height: 3rem;
+}
+.bgcolor--icon {
+  border: 0px;
+  background-color: white;
+}
+.shadow {
+  box-shadow: 2px 2px 12px 1px black;
+}
+::-webkit-scrollbar {
+  width: 0.5rem;
+  box-shadow: 2px 2px 10px 1px black;
+}
+::-webkit-scrollbar-track {
+  background-color: rgb(80, 75, 75);
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgb(209, 209, 209);
+  border-radius: 20px;
+  border: 1px solid black;
+}
