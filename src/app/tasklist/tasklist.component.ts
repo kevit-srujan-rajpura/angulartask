@@ -1,41 +1,64 @@
 import { Component } from '@angular/core';
+import Swal from 'sweetalert2';
 
 interface TaskItem {
   id: number;
   name: string;
   isEdit?: boolean;
   displayIcons?: boolean;
-  // its optional bcz its only useful for edit operation & hover effect
+  
 }
-
 @Component({
   selector: 'app-tasklist',
   templateUrl: './tasklist.component.html',
   styleUrls: ['./tasklist.component.css'],
 })
 export class TasklistComponent {
-  list: TaskItem[] = [];
+  tasklist: TaskItem[] = [];
   newItem = '';
   item!: TaskItem;
-  i!: number;
+  indexoftasklist!: number;
   // will not null or undefined
-
   addTask(item: string): void {
     if (this.newItem.trim() === '') {
-      alert('Enter a valid Task');
-    } else {
-      this.list.push({ id: this.list.length, name: item });
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Enter Valid task!',
+      })
+      return;
     }
+    this.tasklist.push({ id: this.tasklist.length, name: item });
     this.newItem = ''; // Clear input field
   }
-
   removeTask(index: number): void {
-    this.list.splice(index, 1);
-  }
 
-  editTask(task: TaskItem): void {
-    this.list.forEach((item) => (item.isEdit = false)); // multiple edit not open
-    task.isEdit = true; // edit enable
+
+
+    Swal.fire({
+      title: 'Are you sure !',
+      text: "You want to delete this task ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.tasklist.splice(index, 1);
+        Swal.fire(
+          'Deleted!',
+          'Your task has been deleted.',
+          'success'
+        )
+      }
+    })
+
+  }
+  async editTask(task: TaskItem): Promise<void> {
+    this.tasklist.forEach((item) => (item.isEdit = false)); // multiple edit not open
+    task.isEdit = true; 
+
   }
 
   updateTask(task: TaskItem): void {
