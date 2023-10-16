@@ -1,8 +1,8 @@
-<div class="container-fulid">
-  <div class="container">
+<div class="container-fulid bg-light">
+  <div class="container bg-light">
     <div class="row mt-4">
       <div class="col"></div>
-      <div class="col-md-8 bg-white">
+      <div class="col-md-6 bg-white">
         <div class="card bg-secondary">
           <h1 class="text-white text-center m-3">Task Manager</h1>
 
@@ -24,7 +24,7 @@
         </div>
 
         <div class="scroll">
-          <ul *ngFor="let item of list; index as i" class="list-group">
+          <ul *ngFor="let item of tasklist; index as i" class="list-group">
             <li
               class="list-group-item d-flex justify-content-between align-items-center margin shadow"
               (mouseover)="showIcons(item)"
@@ -53,10 +53,14 @@
                     aria-label="Basic outlined example"
                   >
                     <button (click)="editTask(item)" class="bgcolor--icon">
-                      <i class="fas fa-pen-square"></i>
+                      <span class="material-symbols-outlined">
+                        edit
+                        </span>
                     </button>
                     <button (click)="removeTask(i)" class="bgcolor--icon">
-                      <i class="fa fa-trash" id="icon"></i>
+                      <span class="material-symbols-outlined">
+                        delete
+                        </span>
                     </button>
                   </div>
                 </span>
