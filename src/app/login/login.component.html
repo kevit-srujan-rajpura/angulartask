@@ -1,0 +1,57 @@
+<div class="login__container">
+  <mat-card class="loginpage">
+    <mat-toolbar color="accent" >
+      <mat-toolbar-row>
+        <span>Login</span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div class="form-container">
+      <form #userDetailsForm="ngForm" (ngSubmit)="login()" ngForm novalidate>
+        <div class="email__field">
+          <mat-form-field class="input-width">
+            <input
+              matInput
+              placeholder="Email"
+              type="email"
+              required
+              pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+              [(ngModel)]="email"
+              name="email"
+              #emailField="ngModel"
+            />
+          </mat-form-field>
+        
+          <div class="email-error" *ngIf="emailField.invalid && (emailField.dirty || emailField.touched)">
+          <mat-error>  Please enter a valid email address.
+          </mat-error>
+          </div>
+        </div>
+
+        <div class="password__field">
+          <mat-form-field class="input-width">
+            <input
+              matInput
+              placeholder="Password"
+              type="password"
+              required
+              pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+              [(ngModel)]="password"
+              name="password"
+              #passwordField="ngModel"
+            />
+          </mat-form-field>
+        
+          <div class="password-error" *ngIf="passwordField.invalid && (passwordField.dirty || passwordField.touched)">
+          <mat-error>  Password must be at least 8 characters long and contain at least one letter, one number, and one special character.
+          </mat-error>
+          </div>
+        </div>
+
+        <div class="button__field">
+          <button mat-flat-button color="accent" [disabled]="userDetailsForm.invalid" class="submitbtn-hover">Login</button>
+        </div>
+      </form>
+    </div>
+  </mat-card>
+</div>

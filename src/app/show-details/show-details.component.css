@@ -1,0 +1,17 @@
+.main__container {
+    margin: 20px;
+}
+
+.mat-elevation-z8 {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.display__data {
+    margin-bottom: 20px;
+}
+
+.edit__btn {
+    margin-top: 20px;
+}
