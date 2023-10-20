@@ -1,13 +1,10 @@
-  <div class="container">
+  <div class="main__container">
 
-
-
-
-    <form [formGroup]="userDetailsForm" class="formbody">
+    <form [formGroup]="userDetailsForm" class="form--container">
       <div>
 
-        <mat-toolbar color="accent">
-          <span>User Details Form</span>
+        <mat-toolbar color="accent" class="form--title">
+          <span>Regestration Form</span>
         </mat-toolbar>
 
         <mat-form-field>
@@ -115,7 +112,7 @@
         </div>
       </div>
       
-      <button mat-flat-button color="primary" type="button" (click)="addAddress()">Add Address</button>
+      <button mat-flat-button color="primary" type="button" (click)="addAddress()" class="adress-btn">Add Address</button>
       
       <div>
         <mat-form-field>
