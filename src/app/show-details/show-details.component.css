@@ -2,16 +2,16 @@
     margin: 20px;
 }
 
-.mat-elevation-z8 {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
 .display__data {
     margin-bottom: 20px;
 }
 
-.edit__btn {
+.btn--edit {
+    margin-top: 20px;
+}
+
+.main--table{
+    width: 100%;
+    border-collapse: collapse;
     margin-top: 20px;
 }
