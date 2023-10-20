@@ -1,15 +1,15 @@
-<div class="login__container">
-  <mat-card class="loginpage">
+<div class="main__container">
+  <mat-card class="login--page">
     <mat-toolbar color="accent" >
       <mat-toolbar-row>
         <span>Login</span>
       </mat-toolbar-row>
     </mat-toolbar>
 
-    <div class="form-container">
+    <div class="form--container">
       <form #userDetailsForm="ngForm" (ngSubmit)="login()" ngForm novalidate>
         <div class="email__field">
-          <mat-form-field class="input-width">
+          <mat-form-field class="input--width">
             <input
               matInput
               placeholder="Email"
@@ -29,7 +29,7 @@
         </div>
 
         <div class="password__field">
-          <mat-form-field class="input-width">
+          <mat-form-field class="input--width">
             <input
               matInput
               placeholder="Password"
@@ -49,8 +49,12 @@
         </div>
 
         <div class="button__field">
-          <button mat-flat-button color="accent" [disabled]="userDetailsForm.invalid" class="submitbtn-hover">Login</button>
+          <button mat-flat-button color="accent" [disabled]="userDetailsForm.invalid" class="btn--login">Login</button>
         </div>
+<br>
+<a routerLink="/user-details">New User ? Click to Regester !</a>
+
+
       </form>
     </div>
   </mat-card>
