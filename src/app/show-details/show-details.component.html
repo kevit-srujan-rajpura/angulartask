@@ -1,6 +1,13 @@
 <div class="main__container">
   <div class="display__data">
-    <table mat-table [dataSource]="[userDetails]" class="mat-elevation-z8">
+
+
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" #input>
+    </mat-form-field>
+
+    <table mat-table [dataSource]="[userDetails]" class="main--table">
 
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -104,13 +111,12 @@
         </td>
       </ng-container>
 
-
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </div>
 
-  <div class="edit__btn">
+  <div class="btn--edit">
     <button mat-flat-button color="accent" (click)="editForm()">Edit Form</button>
   </div>
 </div>
