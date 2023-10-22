@@ -15,7 +15,7 @@
     background-color: #fff; 
   }
   
-  mat-form-field {
+  .matform--field{
     width: 100%;
     margin-bottom: 20px;
     border-radius: 1rem;
