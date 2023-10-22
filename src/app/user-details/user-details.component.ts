@@ -22,10 +22,12 @@ export class UserDetailsComponent implements OnInit {
     'Cooking',
     
   ];
-  @Input() max :any; // putted in html so user can not select future dates 
-  today = new Date(); //  so that variable is declared as a today
+  // @Input() max :any; // putted in html so user can not select future dates 
+  // today = new Date(); //  so that variable is declared as a today
+  max: Date = new Date(); // Initialize max in the constructor
+  today: Date = new Date();
 
-
+  
   degrees: string[] = [];  
 
   constructor(
