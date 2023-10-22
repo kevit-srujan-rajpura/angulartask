@@ -4,10 +4,10 @@
       <div>
 
         <mat-toolbar color="accent" class="form--title">
-          <span>Regestration Form</span>
+          <span>UserDetails Form</span>
         </mat-toolbar>
 
-        <mat-form-field>
+        <mat-form-field class="matform--field">
           <mat-label for="name">Name:</mat-label>
           <input matInput type="text" id="name" formControlName="name" />
           <ng-container
@@ -24,7 +24,7 @@
         </mat-form-field>
       </div>
 
-      <mat-form-field>
+      <mat-form-field class="matform--field">
         <mat-label>Date Of Birth:</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" [max]="today">
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -32,7 +32,7 @@
       </mat-form-field>
 
       <div>
-        <mat-form-field>
+        <mat-form-field class="matform--field">
           <mat-label for="email">Email:</mat-label>
           <input matInput type="email" id="email" formControlName="email" />
           <ng-container
@@ -50,7 +50,7 @@
       </div>
 
       <div>
-        <mat-form-field>
+        <mat-form-field class="matform--field">
           <mat-label for="phone">Phone Number:</mat-label>
           <input matInput type="tel" id="phone" formControlName="phone" />
           <mat-error *ngIf="userDetailsForm.get('phone')invalid">
@@ -60,12 +60,12 @@
       </div>
 
       <div formGroupName="education">
-        <mat-form-field>
+        <mat-form-field class="matform--field">
           <mat-label>Institute Name :</mat-label>
           <input matInput formControlName="institutename" />
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="matform--field">
           <mat-label>Select Qualification: </mat-label>
           <mat-select formControlName="degree">
             <mat-option value="10th">10th</mat-option>
@@ -79,7 +79,7 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="matform--field">
           <mat-label>Percentage : </mat-label>
           <input matInput formControlName="percentage" />
           <mat-error *ngIf="userDetailsForm.get('percentage')invalid">
@@ -87,7 +87,7 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="matform--field">
           <mat-label>Select Hobbies:</mat-label>
           <mat-select formControlName="hobby" multiple>
             <mat-option *ngFor="let hobby of hobbies" [value]="hobby">{{ hobby }}</mat-option>
@@ -105,7 +105,7 @@
       
       <div formArrayName="addresses">
         <div *ngFor="let addressControl of addresses.controls; let indexOfAddress = index" class="form-group">
-          <mat-form-field>
+          <mat-form-field class="matform--field">
             <mat-label for="addresses">Address no. {{ indexOfAddress + 1 }}:</mat-label>
             <textarea matInput formControlName="{{indexOfAddress}}"></textarea>
           </mat-form-field>
@@ -115,7 +115,7 @@
       <button mat-flat-button color="primary" type="button" (click)="addAddress()" class="adress-btn">Add Address</button>
       
       <div>
-        <mat-form-field>
+        <mat-form-field class="matform--field">
           <mat-label for="summary">Summary:</mat-label>
           <textarea matInput id="summary" formControlName="summary"></textarea>
         </mat-form-field>
