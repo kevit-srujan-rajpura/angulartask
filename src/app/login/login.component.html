@@ -1,8 +1,8 @@
 <div class="main__container">
   <mat-card class="login--page">
-    <mat-toolbar color="accent" >
-      <mat-toolbar-row>
-        <span>Login</span>
+    <mat-toolbar color="accent" class="toolbar--title" >
+      <mat-toolbar-row class="title--name">
+        <span >Login</span>
       </mat-toolbar-row>
     </mat-toolbar>
 
@@ -51,8 +51,8 @@
         <div class="button__field">
           <button mat-flat-button color="accent" [disabled]="userDetailsForm.invalid" class="btn--login">Login</button>
         </div>
-<br>
-<a routerLink="/user-details">New User ? Click to Regester !</a>
+<!-- <br>
+<a routerLink="/user-details">New User ? Click to Regester !</a> -->
 
 
       </form>
