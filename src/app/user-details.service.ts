@@ -1,17 +1,43 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
+interface userdata {
+  name: string;
+  dateOfBirth: Date;
+  email: string;
+  phone: number;
+  education?: {
+    institutename: string;
+    degree: string;
+    percentage: number;
+
+    hobby?: {
+      Reading: boolean;
+      Traveling: boolean;
+      Sports: boolean;
+      Music: boolean;
+      Dancing: boolean;
+      Playing: boolean;
+      Coding: boolean;
+      Cooking: boolean;
+    };
+  };
+  gender?: string;
+  address: { addedAddress: string }[];
+  summary?: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class UserDetailsService {
-  private userDetails: any = {};
+  private userDetails!: userdata;
   private addresses: string[] = [];
-  private userDetailsSubject = new BehaviorSubject<any>(null); //  emit current userdertials to subscriber 
+  private userDetailsSubject = new BehaviorSubject<userdata>({} as userdata); //  emits current userdertials to subscriber
   userDetailsObservable$ = this.userDetailsSubject.asObservable();
 
-  setUserDetails(userDetails: any) {
-    this.userDetails = userDetails;  // updatesd the userdetail
+  setUserDetails(userDetails: userdata) {
+    this.userDetails = userDetails; // updatesd the userdetail
     // this.addresses = userDetails.addresses;
     this.userDetailsSubject.next(this.userDetails); // emits updated userdetails
   }
