@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserDetailsService } from '../user-details.service';
@@ -9,7 +8,33 @@ import { UserDetailsService } from '../user-details.service';
   styleUrls: ['./show-details.component.css'],
 })
 export class ShowDetailsComponent implements OnInit {
-  userDetails: any = {};
+  userDetails:
+    | {
+        name: string;
+        dateOfBirth: Date;
+        email: string;
+        phone: number;
+        education?: {
+          institutename: string;
+          degree: string;
+          percentage: number;
+
+          hobby?: {
+            Reading: boolean;
+            Traveling: boolean;
+            Sports: boolean;
+            Music: boolean;
+            Dancing: boolean;
+            Playing: boolean;
+            Coding: boolean;
+            Cooking: boolean;
+          };
+        };
+        gender?: string;
+        address?: { addedAddress: string }[];
+        summary?: string;
+      }
+    | undefined;
   displayedColumns: string[] = [
     'name',
     'dateOfBirth',
@@ -21,7 +46,7 @@ export class ShowDetailsComponent implements OnInit {
     'hobby',
     'gender',
     'addresses',
-    'summary'
+    'summary',
   ];
 
   constructor(
@@ -31,8 +56,9 @@ export class ShowDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.userDetailsService.userDetailsObservable$.subscribe((userDetails) => {
-      if (userDetails) {  // true when the obj comes
-        this.userDetails = userDetails;  // value setted here to show
+      if (userDetails) {
+        // true when the obj comes
+        this.userDetails = userDetails; // value setted here to show
       } else {
         this.router.navigate(['/user-details']);
       }
