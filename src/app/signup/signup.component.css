@@ -1,0 +1,98 @@
+.main__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f3f4f6;
+}
+
+.form--container {
+  max-width: 800px;
+  width: 100%;
+  padding: 20px;
+  border-radius: 1rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+  background-color: #ffffff;
+}
+
+.ngform--field {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.ngform--field--label {
+  font-weight: bold;
+  margin-bottom: 0rem;
+}
+
+.ngform--field input,
+.ngform--field textarea,
+.ngform--field p-calendar,
+.ngform--field p-dropdown,
+.ngform--field p-multiselect {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  transition: border-color 0.3s;
+  font-size: 1rem;
+}
+
+.ngform--field input:focus,
+.ngform--field textarea:focus,
+.ngform--field p-calendar:focus,
+.ngform--field p-dropdown:focus,
+.ngform--field p-multiselect:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.8rem;
+}
+
+.flex.align-items-center {
+  display: flex;
+  align-items: center;
+}
+
+.btn--sizing {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn--reset {
+  margin-right: 1rem;
+  background-color: #64748B;
+  color: #fff;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.p-calendar {
+  width: 100%;
+}
+
+.p-dropdown {
+  width: 100%;
+}
+
+.p-multiselect {
+  width: 100%;
+}
+
+.btn--radio{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.btn--address{
+  margin: 2px;
+}
