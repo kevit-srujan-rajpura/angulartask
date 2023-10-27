@@ -1,42 +1,100 @@
-<p-table >
+<div [style]="{ margin: '15px' }">
+  <p-table [value]="[userDetails]">
     <ng-template pTemplate="header">
-        <tr>
-            <th>Name</th>
-            <th>Date Of Birth</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Institute Name</th>
-            <th>Qualification</th>
-            <th>Percantage</th>
-            <th>Hobbies</th>
-            <th>Gender</th>
-            <th>Address</th>
-            <th>Summary</th>
-            <th>Edit User</th>
-            <th>Delete User</th>
-        </tr>
-</ng-template>
-<ng-template pTemplate="body">
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>   
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td><button pButton (click)="editForm()">Edit
-        </button></td>
-        <td><button pButton (click)="deleteUser()">Delete</button></td>
+      <tr>
+        <th>Name</th>
+        <th>Date Of Birth</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Institute Name</th>
+        <th>Qualification</th>
+        <th>Percantage</th>
+        <th>Hobbies</th>
+        <th>Gender</th>
+        <th>Address</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body">
+      <tr *ngIf="userDetails">
+        <td>{{ userDetails.name | uppercase }}</td>
+        <td>{{ userDetails.dateOfBirth | date : "longDate" }}</td>
+        <td>{{ userDetails.email }}</td>
+        <td>{{ userDetails.phone }}</td>
 
-    </tr>
-</ng-template>
-</p-table>
+        <td>
+          <ng-container
+            *ngIf="
+              userDetails.education && userDetails.education.institutename;
+              else placeholder
+            "
+            >{{ userDetails.education.institutename }}
+          </ng-container>
+          <ng-template #placeholder>-</ng-template>
+        </td>
 
-
+        <td>
+          <ng-container
+            *ngIf="
+              userDetails.education && userDetails.education.degree;
+              else placeholder
+            "
+            >{{ userDetails.education.degree }}
+          </ng-container>
+          <ng-template #placeholder>-</ng-template>
+        </td>
+        <td>
+          <ng-container
+            *ngIf="
+              userDetails.education && userDetails.education.percentage;
+              else placeholder
+            "
+            >{{ userDetails.education.percentage }}
+          </ng-container>
+          <ng-template #placeholder>-</ng-template>
+        </td>
+        <td>
+          <ng-container
+            *ngIf="
+              userDetails.education && userDetails.education.hobby;
+              else placeholder
+            "
+            >{{ userDetails.education.hobby}}
+          </ng-container>
+          <ng-template #placeholder>-</ng-template>
+        </td>
+        <td>
+          <ng-container *ngIf="userDetails.gender; else placeholder"
+            >{{ userDetails.gender }}
+          </ng-container>
+          <ng-template #placeholder>-</ng-template>
+        </td>
+        <td>
+          <ng-container
+            *ngIf="
+              userDetails['address'] && userDetails['address'].length;
+              else placeholder
+            "
+          >
+            <span *ngFor="let address of userDetails['address']"
+              >{{ address }}<br
+            /></span>
+          </ng-container>
+          <ng-template #placeholder>-</ng-template>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <br />
+  <button pButton (click)="editForm()">Edit</button>
+  <br />
+  <br />
+  <button pButton (click)="deleteUser(userDetails!.id)">
+    Delete
+  </button>
+  
+<br />
+<br />
 <button pButton (click)="allusersdata()">Click Here</button>
+<br />
 <p>Click Above to show all users data</p>
+</div>
