@@ -1,1 +1,64 @@
-<p>alluserdata works!</p>
+<div [style]="{'margin':'15px'}">
+  <p-table [value]="userArray">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Name</th>
+        <th>Date Of Birth</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Institute Name</th>
+        <th>Qualification</th>
+        <th>Percentage</th>
+        <th>Hobbies</th>
+        <th>Gender</th>
+        <th>Address</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-userDetail>
+      <tr>
+        <td>{{ userDetail.name | uppercase }}</td>
+        <td>{{ userDetail.dateOfBirth | date : "longDate" }}</td>
+        <td>{{ userDetail.email }}</td>
+        <td>{{ userDetail.phone }}</td>
+        <td>
+          <ng-container *ngIf="userDetail.education && userDetail.education.institutename; else placeholder">
+            {{ userDetail.education.institutename }}
+          </ng-container>
+          <ng-template #placeholder>-</ng-template>
+        </td>
+        <td>
+          <ng-container *ngIf="userDetail.education && userDetail.education.degree; else placeholder">
+            {{ userDetail.education.degree }}
+          </ng-container>
+          <ng-template #placeholder>-</ng-template>
+        </td>
+        <td>
+          <ng-container *ngIf="userDetail.education && userDetail.education.percentage; else placeholder">
+            {{ userDetail.education.percentage }}
+          </ng-container>
+          <ng-template #placeholder>-</ng-template>
+        </td>
+        <td>
+          <ng-container *ngIf="userDetail.education && userDetail.education.hobby; else placeholder">
+            {{ userDetail.education.hobby | json }}
+          </ng-container>
+          <ng-template #placeholder>-</ng-template>
+        </td>
+        <td>
+          <ng-container *ngIf="userDetail.gender; else placeholder">
+            {{ userDetail.gender }}
+          </ng-container>
+          <ng-template #placeholder>-</ng-template>
+        </td>
+        <td>
+          <ng-container *ngIf="userDetail.addresses && userDetail.addresses.length; else placeholder">
+            <span *ngFor="let address of userDetail.addresses">
+              {{ address.addedAddress }}<br>
+            </span>
+          </ng-container>
+          <ng-template #placeholder>-</ng-template>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
