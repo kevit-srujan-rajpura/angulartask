@@ -1,31 +1,42 @@
 <div class="main__container">
-  <p-card header="Login Page" class="login--page"  >
+  <p-card header="Login Page" class="login--page">
     <div class="form--container">
-      <form (ngSubmit)="login()" ngForm>
+      <form #userLogin="ngForm" (ngSubmit)="login(userLogin.value)">
         <div class="p-inputgroup email__field">
           <span class="p-inputgroup-addon">
             <i class="pi pi-user"></i>
           </span>
-          <input pInputText placeholder="Username" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"/>
+          <input
+            ngModel
+            name="email"
+            #email="ngModel"
+            pInputText
+            placeholder="Username"
+            required
+            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+          />
         </div>
-
-
 
         <div class="p-inputgroup password__field">
           <span class="p-inputgroup-addon">
             <i class="pi pi-lock"></i>
           </span>
-          <input pInputText placeholder="Password" required pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"/>
-          
+          <input
+            ngModel
+            name="password"
+            #password="ngModel"
+            pInputText
+            placeholder="Password"
+            required
+            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+          />
         </div>
 
-
-       
-
-
-
         <div class="button__field">
-          <p-button [rounded]="true" class="btn--login" (click)="login()"
+          <p-button
+            [rounded]="true"
+            class="btn--login"
+            type="submit"
             >Login</p-button
           >
         </div>
