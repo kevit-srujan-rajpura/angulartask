@@ -8,10 +8,33 @@ import {
 } from '@angular/forms';
 import { UserDetailsService } from '../user-details.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 
-interface Qualification {
-  passed : string
+interface Userdata {
+  id:number;
+  name: string;
+  dateOfBirth: Date;
+  email: string;
+  phone: number;
+  education?: {
+    institutename: string;
+    degree: string;
+    percentage: number;
+
+    hobby?: {
+      Reading: boolean;
+      Traveling: boolean;
+      Sports: boolean;
+      Music: boolean;
+      Dancing: boolean;
+      Playing: boolean;
+      Coding: boolean;
+      Cooking: boolean;
+    };
+  };
+  gender?: string;
+  address?: { addedAddress: string }[];
 }
 
 @Component({
@@ -20,6 +43,7 @@ interface Qualification {
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent {
+  userDetails: Userdata | undefined;
   date: Date | undefined;
   userDetailsForm: FormGroup;
   hobbies: string[] = [
@@ -32,29 +56,21 @@ export class SignupComponent {
     'Coding',
     'Cooking',
   ];
-  max: Date = new Date(); // putted in html so user can not select future dates (max date )
-  todayDate = new Date(); //  so that variable is declared as a today
+  max: Date = new Date();
+  todayDate = new Date();
+  updateMode: boolean = false;
+  dataDeleted: boolean = false;
 
-  degrees: string[] = [
-    
-    '10th',
-    '12th',
-    'Bacholars',
-    'Masters',
-    'Doctarte'
-  ];
+  degrees: string[] = ['10th', '12th', 'Bacholars', 'Masters', 'Doctarte'];
   formGroup: any;
 
-  stateOptions: any[] = [{label: 'Male', value: 'male'}, {label: 'Female', value: 'female'}];
-
-  value: string = 'off';
-  
   password!: number | string;
-  picker: any;
+  picker!: Date;
 
   constructor(
     private formbuild: FormBuilder,
     private router: Router,
+    private http: HttpClient,
     private userDetailsService: UserDetailsService
   ) {
     this.userDetailsForm = this.formbuild.group({
@@ -68,10 +84,7 @@ export class SignupComponent {
       ],
       dateOfBirth: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phone: [
-        '',
-        [ Validators.required],
-      ],
+      phone: ['', [Validators.required]],
       education: this.formbuild.group({
         institutename: [''],
         degree: [''],
@@ -79,9 +92,7 @@ export class SignupComponent {
         hobby: [''],
       }),
       gender: [''],
-      password: ['', Validators.required],
       addresses: this.formbuild.array([]),
-      summary: ['', Validators.maxLength(200)],
     });
     this.todayDate.setDate(this.todayDate.getDate());
   }
@@ -95,21 +106,7 @@ export class SignupComponent {
   }
 
   ngOnInit() {
-    
-
-    this.userDetailsService.userDetailsObservable$.subscribe((userDetails) => {
-      if (userDetails) {
-        // means only goes when userDetails obj comes
-        this.userDetailsForm.patchValue(userDetails); // for the pathing data
-
-        // Add addresses from userDetails to the form array
-        for (const address of userDetails.address) {
-          this.addAddress();
-          const lastIndex = this.addresses.length - 1;
-          this.addresses.at(lastIndex).setValue(address); // set value of new adress at last
-        }
-      }
-    });
+  
   }
 
   resetForm() {
@@ -124,15 +121,26 @@ export class SignupComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         this.userDetailsForm.reset();
-
-        Swal.fire('Cleared!', 'Your response has been cleared.', 'success');
       }
     });
   }
 
   submitForm() {
     if (this.userDetailsForm.invalid) {
-      this.userDetailsService.setUserDetails(this.userDetailsForm.value); // for edit ,  set the obj with current value using meethod
+      this.userDetailsService.setUserDetails(this.userDetailsForm.value);
+
+      this.http
+        .post('http://localhost:3000/signup', this.userDetailsForm.value)
+        .subscribe(
+          (res) => {
+            console.log('Success:', res);
+            this.router.navigate(['/userdata']);
+          },
+          (error) => {
+            console.error('Error:', error);
+          }
+        );
+
       this.router.navigate(['/userdata']);
     } else {
       Swal.fire({
@@ -142,4 +150,5 @@ export class SignupComponent {
       });
     }
   }
+
 }
