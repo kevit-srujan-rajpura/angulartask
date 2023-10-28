@@ -1,11 +1,10 @@
-import { Component } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserDetailsService } from '../user-details.service';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { UserDetailsService } from '../user-details.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 interface Userdata {
-  id: number;
+  id:number;
   name: string;
   dateOfBirth: Date;
   email: string;
@@ -14,6 +13,7 @@ interface Userdata {
     institutename: string;
     degree: string;
     percentage: number;
+
     hobby?: {
       Reading: boolean;
       Traveling: boolean;
@@ -30,111 +30,76 @@ interface Userdata {
 }
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './updateuser.component.html',
-  styleUrls: ['./updateuser.component.css'],
+  selector: 'app-show-details',
+  templateUrl: './userdata.component.html',
+  styleUrls: ['./userdata.component.css'],
 })
-export class UpdateuserComponent {
+export class UserdataComponent implements OnInit {
   userDetails: Userdata | undefined;
-  date: Date | undefined;
-  userDetailsForm: FormGroup;
-  hobbies: string[] = [
-    'Reading',
-    'Traveling',
-    'Sports',
-    'Music',
-    'Dancing',
-    'Playing',
-    'Coding',
-    'Cooking',
-  ];
-  max: Date = new Date();
-  todayDate = new Date();
-  // updateMode: boolean = false;
-  dataDeleted: boolean = false;
+  // headers = new Headers({
+  //   'Content-Type': 'application/json',
+  //   Accept: 'application/json',
+  // });
 
-  degrees: string[] = ['10th', '12th', 'Bacholars', 'Masters', 'Doctarte'];
-  formGroup: any;
-  password!: number | string;
-  picker!: Date;
+  // httpOptions = {
+  //   headers: this.headers,
+  // };
 
   constructor(
-    private formbuild: FormBuilder,
     private router: Router,
     private http: HttpClient,
     private userDetailsService: UserDetailsService
-  ) {
-    this.userDetailsForm = this.formbuild.group({
-      name: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(50),
-        ],
-      ],
-      dateOfBirth: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required]],
-      education: this.formbuild.group({
-        institutename: [''],
-        degree: [''],
-        percentage: ['', [Validators.pattern(/^([0-9]|[1-9][0-9]|100)$/)]],
-        hobby: [''],
-      }),
-      gender: [''],
-      addresses: this.formbuild.array([]),
-    });
-    this.todayDate.setDate(this.todayDate.getDate());
-  }
-
-  get addresses() {
-    return this.userDetailsForm.get('addresses') as FormArray;
-  }
-
-  addAddress() {
-    this.addresses.push(this.formbuild.control(''));
-  }
+  ) {}
 
   ngOnInit() {
     this.userDetailsService.userDetailsObservable$.subscribe((userDetails) => {
       if (userDetails) {
-        const userIdToGet = this.userDetails?.['id'];
-        console.log(userIdToGet);
+        console.log(userDetails.id)
         this.http
-          .get<Userdata>("http://localhost:3000/signup/" + userIdToGet)
-          .subscribe(
-            (userDetails) => {
-              this.userDetails = userDetails;
-            },
-            (error) => {
-              console.error('Error in fetching data:', error);
+          .get<Userdata[]>(' http://localhost:3000/signup')
+          .subscribe((res) => {
+            if (res && res.length > 0) {
+              this.userDetails = res[res.length - 1];
+            } else {
+              alert('Ther is no user exists');
             }
-          );
+          });
+      } else {
+        this.router.navigate(['/signup']);
       }
     });
   }
 
-  updateUser() {
+  editForm(userDetails: Userdata["id"]) {
+    this.router.navigate(['/updateuser', this.userDetails]);
+
+
+
+  }
+
+  allusersdata() {
+    this.router.navigate(['/alluserdata']);
+  }
+
+  deleteUser(userDetails: Userdata["id"]) {
     if (this.userDetails) {
-             const userIdToUpdate = this.userDetails?.["id"];
-              console.log(this.userDetails.id);
+      const userIdToDelete = this.userDetails['id'];
       this.http
-        .put<Userdata>(
-          `http://localhost:3000/signup`,
-          this.userDetailsForm.value
-        )
+        .delete(`http://localhost:3000/signup/${userIdToDelete}`)
         .subscribe(
-          (res) => {
-            console.log('User updated:', res);
-            this.router.navigate(['/userdata']);
+          (response) => {
+            console.log(`User with ID ${userIdToDelete} has been deleted.`);
+            if (this.userDetails) {
+              this.userDetails = undefined;
+            }
           },
           (error) => {
-            console.error('Error:', error);
+            console.error(
+              `Error deleting user with ID ${userIdToDelete}:`,
+              error
+            );
           }
         );
-    } else {
-      console.error(' Cannot update user.');
     }
   }
 }
