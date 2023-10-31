@@ -1,62 +1,24 @@
-<div [style]="{'margin':'15px'}">
+<div class="main__container">
+  <h1>UserData Table</h1>
+  <button pButton type="button" (click)="addUser()" >
+    <span class="material-symbols-outlined"> person_add </span>
+  </button>
+
   <p-table [value]="userArray">
     <ng-template pTemplate="header">
-      <tr>
-        <th>Name</th>
-        <th>Date Of Birth</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Institute Name</th>
-        <th>Qualification</th>
-        <th>Percentage</th>
-        <th>Hobbies</th>
-        <th>Gender</th>
-        <th>Address</th>
+      <tr [style]="{ height: '50px' }">
+        <th class="text--center">Name</th>
+        <th class="text--center">View UserDetails</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-userDetail>
-      <tr>
-        <td>{{ userDetail.name | uppercase }}</td>
-        <td>{{ userDetail.dateOfBirth | date : "longDate" }}</td>
-        <td>{{ userDetail.email }}</td>
-        <td>{{ userDetail.phone }}</td>
-        <td>
-          <ng-container *ngIf="userDetail.education && userDetail.education.institutename; else placeholder">
-            {{ userDetail.education.institutename }}
-          </ng-container>
-          <ng-template #placeholder>-</ng-template>
-        </td>
-        <td>
-          <ng-container *ngIf="userDetail.education && userDetail.education.degree; else placeholder">
-            {{ userDetail.education.degree }}
-          </ng-container>
-          <ng-template #placeholder>-</ng-template>
-        </td>
-        <td>
-          <ng-container *ngIf="userDetail.education && userDetail.education.percentage; else placeholder">
-            {{ userDetail.education.percentage }}
-          </ng-container>
-          <ng-template #placeholder>-</ng-template>
-        </td>
-        <td>
-          <ng-container *ngIf="userDetail.education && userDetail.education.hobby; else placeholder">
-            {{ userDetail.education.hobby | json }}
-          </ng-container>
-          <ng-template #placeholder>-</ng-template>
-        </td>
-        <td>
-          <ng-container *ngIf="userDetail.gender; else placeholder">
-            {{ userDetail.gender }}
-          </ng-container>
-          <ng-template #placeholder>-</ng-template>
-        </td>
-        <td>
-          <ng-container *ngIf="userDetail.addresses && userDetail.addresses.length; else placeholder">
-            <span *ngFor="let address of userDetail.addresses">
-              {{ address.addedAddress }}<br>
-            </span>
-          </ng-container>
-          <ng-template #placeholder>-</ng-template>
+      <tr [style]="{ height: '10px' }">
+        <td class="text--center">{{ userDetail.name | uppercase }}</td>
+
+        <td class="text--center">
+          <button pButton (click)="viewUser(userDetail.id)">
+            <span class="material-symbols-outlined"> open_in_new </span>
+          </button>
         </td>
       </tr>
     </ng-template>
