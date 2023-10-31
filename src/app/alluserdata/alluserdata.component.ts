@@ -1,31 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserDetailsService } from '../user-details.service';
-
-interface Userdata {
-  id:number;
-  name: string;
-  dateOfBirth: Date;
-  email: string;
-  phone: number;
-  education?: {
-    institutename: string;
-    degree: string;
-    percentage: number;
-    hobby?: {
-      Reading: boolean;
-      Traveling: boolean;
-      Sports: boolean;
-      Music: boolean;
-      Dancing: boolean;
-      Playing: boolean;
-      Coding: boolean;
-      Cooking: boolean;
-    };
-  };
-  gender?: string;
-  address?: { addedAddress: string }[];
-}
+import { ActivatedRoute, Router } from '@angular/router';
+import { Userdata } from '../userdata-interface';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-alluserdata',
@@ -33,18 +11,25 @@ interface Userdata {
   styleUrls: ['./alluserdata.component.css'],
 })
 export class AlluserdataComponent implements OnInit {
-  userArray: Userdata[] = []; 
+  userArray: Userdata[] = [];
+  userDetailsForm!: FormGroup;
+  userDetails!: Userdata;
 
-  constructor(private http: HttpClient, private userDetailsService: UserDetailsService) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private userDetailsService: UserDetailsService
+  ) {}
 
   ngOnInit() {
     this.userDetailsService.userDetailsObservable$.subscribe((userDetails) => {
       if (userDetails) {
         this.http
-          .get<Userdata[]>('http://localhost:3000/signup') 
+          .get<Userdata[]>('http://localhost:3000/signup')
           .subscribe((res) => {
             if (res && res.length > 0) {
-              this.userArray = res; 
+              this.userArray = res;
             } else {
               alert('There are no users in the JSON data.');
             }
@@ -53,5 +38,13 @@ export class AlluserdataComponent implements OnInit {
         alert('Cannot get user data.');
       }
     });
+  }
+
+  addUser() {
+    this.router.navigate(['/signup']);
+  }
+
+  viewUser(userId:number) {
+    this.router.navigate(['/userdata',userId]);
   }
 }
