@@ -4,31 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserDetailsService } from '../user-details.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-
-interface Userdata {
-  id: number;
-  name: string;
-  dateOfBirth: Date;
-  email: string;
-  phone: number;
-  education?: {
-    institutename: string;
-    degree: string;
-    percentage: number;
-    hobby?: {
-      Reading: boolean;
-      Traveling: boolean;
-      Sports: boolean;
-      Music: boolean;
-      Dancing: boolean;
-      Playing: boolean;
-      Coding: boolean;
-      Cooking: boolean;
-    };
-  };
-  gender?: string;
-  address?: { addedAddress: string }[];
-}
+import { Userdata } from '../userdata-interface';
 
 @Component({
   selector: 'app-signup',
@@ -93,35 +69,48 @@ export class UpdateuserComponent {
     return this.userDetailsForm.get('addresses') as FormArray;
   }
 
-  addAddress() {
-    this.addresses.push(this.formbuild.control(''));
+  // addAddress() {
+  //   this.addresses.push(this.formbuild.control(''));
+  // }
+
+
+  addAddress() : void {
+    const newAddress = this.formbuild.group({
+      addedAddress: ''
+    })
+    this.addresses.push(newAddress);
   }
 
+
   ngOnInit() {
-    this.userDetailsService.userDetailsObservable$.subscribe((userDetails) => {
-      if (userDetails) {
-        const userId = this.route.snapshot.params['id'];
-        console.log(userId);
-        this.http
-          .get<Userdata>('http://localhost:3000/signup' + '/' + userId)
-          .subscribe((formData) => {
-            if (formData.address) {
-              for (let a of formData.address) {
-                this.addAddress(); 
-                const lastIndex = this.addresses.length - 1;
-                this.addresses.at(lastIndex).patchValue(a);
-              }
-            }
-            
-            this.userDetailsForm.patchValue(formData);
-          });
-      }
-    });
+    const userId = this.route.snapshot.params['id'];
+console.log("hiii")
+    if (userId) {
+      // console.log(userId);
+      console.log("hiii")
+      this.http
+        .get<Userdata>('http://localhost:3000/signup' + '/' + userId)
+        .subscribe((formData) => {
+         
+
+            console.log("hello");
+
+            // for (const add of formData.address) {
+            //   console.log(add);
+            //   // this.addresses;
+            //   // const lastIndex = this.addresses.length - 1;
+            //   // this.addresses.at(lastIndex).setValue(address); 
+            // }
+          
+        
+          this.userDetailsForm.patchValue(formData);
+        });
+    }
   }
 
   updateUser() {
-    if (this.userDetailsForm) {
-      const userId = this.route.snapshot.params['id'];
+    const userId = this.route.snapshot.params['id'];
+    if (userId) {
       this.http
         .put<Userdata>(
           'http://localhost:3000/signup' + '/' + userId,
@@ -129,7 +118,7 @@ export class UpdateuserComponent {
         )
         .subscribe((res) => {
           console.log('User updated:', res);
-          this.router.navigate(['/userdata']);
+          this.router.navigate(['/alluserdata']);
         });
     } else {
       console.error(' Cannot update user.');
