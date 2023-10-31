@@ -1,33 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserDetailsService } from '../user-details.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-
-interface Userdata {
-  id:number;
-  name: string;
-  dateOfBirth: Date;
-  email: string;
-  phone: number;
-  education?: {
-    institutename: string;
-    degree: string;
-    percentage: number;
-
-    hobby?: {
-      Reading: boolean;
-      Traveling: boolean;
-      Sports: boolean;
-      Music: boolean;
-      Dancing: boolean;
-      Playing: boolean;
-      Coding: boolean;
-      Cooking: boolean;
-    };
-  };
-  gender?: string;
-  address?: { addedAddress: string }[];
-}
+import { HttpClient } from '@angular/common/http';
+import { Userdata } from '../userdata-interface';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-show-details',
@@ -36,49 +12,39 @@ interface Userdata {
 })
 export class UserdataComponent implements OnInit {
   userDetails: Userdata | undefined;
-  // headers = new Headers({
-  //   'Content-Type': 'application/json',
-  //   Accept: 'application/json',
-  // });
-
-  // httpOptions = {
-  //   headers: this.headers,
-  // };
+  userDetailsForm!: FormGroup;
 
   constructor(
     private router: Router,
     private http: HttpClient,
+    private route: ActivatedRoute,
     private userDetailsService: UserDetailsService
   ) {}
 
   ngOnInit() {
     this.userDetailsService.userDetailsObservable$.subscribe((userDetails) => {
       if (userDetails) {
-        console.log(userDetails.id)
+        const userId = this.route.snapshot.params['id'];
+        console.log(userId);
         this.http
-          .get<Userdata[]>(' http://localhost:3000/signup')
-          .subscribe((res) => {
-            if (res && res.length > 0) {
-              this.userDetails = res[res.length - 1];
-            } else {
-              alert('Ther is no user exists');
-            }
+          .get<Userdata>('http://localhost:3000/signup' + '/' + userId)
+          .subscribe((formData) => {
+            console.log(formData);
+            this.userDetails = formData;
           });
-      } else {
-        this.router.navigate(['/signup']);
       }
     });
   }
 
-  editForm() {
-    this.router.navigate(['/updateuser']);
+  editForm(userId: number) {
+    this.router.navigate(['/updateuser/' + userId]);
   }
 
   allusersdata() {
     this.router.navigate(['/alluserdata']);
   }
 
-  deleteUser(userDetails: Userdata["id"]) {
+  deleteUser(userDetails: Userdata['id']) {
     if (this.userDetails) {
       const userIdToDelete = this.userDetails['id'];
       this.http
@@ -88,6 +54,7 @@ export class UserdataComponent implements OnInit {
             console.log(`User with ID ${userIdToDelete} has been deleted.`);
             if (this.userDetails) {
               this.userDetails = undefined;
+              this.router.navigate(['/alluserdata']);
             }
           },
           (error) => {
