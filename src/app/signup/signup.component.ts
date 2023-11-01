@@ -34,7 +34,7 @@ interface Userdata {
     };
   };
   gender?: string;
-  address?: { addedAddress: string }[];
+  addressess?: { addedAddress: string }[];
 }
 
 @Component({
@@ -92,17 +92,23 @@ export class SignupComponent {
         hobby: [''],
       }),
       gender: [''],
-      addresses: this.formbuild.array([]),
+      addressess: this.formbuild.array([]),
     });
     this.todayDate.setDate(this.todayDate.getDate());
   }
 
-  get addresses() {
-    return this.userDetailsForm.get('addresses') as FormArray;
+  get addressess() {
+    return this.userDetailsForm.get('addressess') as FormArray;
   }
 
   addAddress() {
-    this.addresses.push(this.formbuild.control(''));
+    this.addressess.push(this.formbuild.control(''));
+  }
+
+  createAdress(addressess: { addedAddress: String; }) : FormGroup{
+    return this.formbuild.group({
+      addedAddress: addressess.addedAddress
+    });
   }
 
   ngOnInit() {
@@ -134,14 +140,14 @@ export class SignupComponent {
         .subscribe(
           (res) => {
             console.log('Success:', res);
-            this.router.navigate(['/userdata']);
+            this.router.navigate(['/alluserdata']);
           },
           (error) => {
             console.error('Error:', error);
           }
         );
 
-      this.router.navigate(['/userdata']);
+      this.router.navigate(['/alluserdata']);
     } else {
       Swal.fire({
         icon: 'error',
