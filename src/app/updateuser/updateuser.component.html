@@ -1,36 +1,23 @@
 <div class="main__container">
   <form [formGroup]="userDetailsForm" class="form--container">
-    <p-toolbar
-      class="form--title"
-      [style]="{
+    <p-toolbar class="form--title" [style]="{
         'margin-bottom': '25px',
         'justify-content': 'center',
         'background-color': '#3B82F6',
         color: 'white'
-      }"
-    >
+      }">
       <div>Update - User Details</div>
     </p-toolbar>
 
     <div class="ngform--field">
       <label for="name" class="ngform--field--label">Name:</label>
-      <input
-        pInputText
-        id="name"
-        formControlName="name"
-        class="bottom--margin"
-      />
-      <div
-        *ngIf="
+      <input pInputText id="name" formControlName="name" class="bottom--margin" />
+      <div *ngIf="
           userDetailsForm.get('name')?.invalid &&
           (userDetailsForm.get('name')?.dirty ||
             userDetailsForm.get('name')?.touched)
-        "
-      >
-        <div
-          *ngIf="userDetailsForm.get('name'); hasError: 'required'"
-          class="error-message"
-        >
+        ">
+        <div *ngIf="userDetailsForm.get('name'); hasError: 'required'" class="error-message">
           Enter Valid Name
         </div>
       </div>
@@ -38,26 +25,15 @@
 
     <div>
       <label class="ngform--field--label">Date Of Birth:</label>
-      <p-calendar
-        formControlName="dateOfBirth"
-        [maxDate]="todayDate"
-        [showIcon]="true"
-        (click)="(picker)"
-        class="bottom--margin ngform--field"
-        [style]="{ height: '38px' }"
-      ></p-calendar>
+      <p-calendar formControlName="dateOfBirth" [maxDate]="todayDate" [showIcon]="true" (click)="(picker)"
+        class="bottom--margin ngform--field" [style]="{ height: '38px' }"></p-calendar>
 
-      <div
-        *ngIf="
+      <div *ngIf="
           userDetailsForm.get('dateOfBirth')?.invalid &&
           (userDetailsForm.get('dateOfBirth')?.dirty ||
             userDetailsForm.get('dateOfBirth')?.touched)
-        "
-      >
-        <div
-          *ngIf="userDetailsForm.get('dateOfBirth'); hasError: 'required'"
-          class="error-message"
-        >
+        ">
+        <div *ngIf="userDetailsForm.get('dateOfBirth'); hasError: 'required'" class="error-message">
           Enter Valid Date
         </div>
       </div>
@@ -66,24 +42,13 @@
     <div>
       <div class="ngform--field">
         <label for="email" class="ngform--field--label">Email:</label>
-        <input
-          pInputText
-          type="email"
-          id="email"
-          formControlName="email"
-          class="bottom--margin"
-        />
-        <div
-          *ngIf="
+        <input pInputText type="email" id="email" formControlName="email" class="bottom--margin" />
+        <div *ngIf="
             userDetailsForm.get('email')?.invalid &&
             (userDetailsForm.get('email')?.dirty ||
               userDetailsForm.get('email')?.touched)
-          "
-        >
-          <div
-            *ngIf="userDetailsForm.get('email'); hasError: 'required'"
-            class="error-message"
-          >
+          ">
+          <div *ngIf="userDetailsForm.get('email'); hasError: 'required'" class="error-message">
             Enter Valid Email
           </div>
         </div>
@@ -93,25 +58,13 @@
     <div>
       <div class="ngform--field">
         <label for="email" class="ngform--field--label">Phone:</label>
-        <input
-          pInputText
-          type="tel"
-          id="phone"
-          pKeyFilter="num"
-          formControlName="phone"
-          class="bottom--margin"
-        />
-        <div
-          *ngIf="
+        <input pInputText type="tel" id="phone" pKeyFilter="num" formControlName="phone" class="bottom--margin" />
+        <div *ngIf="
             userDetailsForm.get('phone')?.invalid &&
             (userDetailsForm.get('phone')?.dirty ||
               userDetailsForm.get('phone')?.touched)
-          "
-        >
-          <div
-            *ngIf="userDetailsForm.get('phone'); hasError: 'required'"
-            class="error-message"
-          >
+          ">
+          <div *ngIf="userDetailsForm.get('phone'); hasError: 'required'" class="error-message">
             Enter Valid Phone
           </div>
         </div>
@@ -121,21 +74,13 @@
     <div formGroupName="education">
       <div class="ngform--field">
         <label class="ngform--field--label">Institute Name:</label>
-        <input
-          pInputText
-          formControlName="institutename"
-          class="bottom--margin"
-        />
+        <input pInputText formControlName="institutename" class="bottom--margin" />
       </div>
 
       <div>
         <label class="ngform--field--label">Select Qualification:</label>
-        <p-dropdown
-          [options]="degrees"
-          class="ngform--field p-dropdown"
-          [style]="{ height: '38px' }"
-          formControlName="degree"
-        ></p-dropdown>
+        <p-dropdown [options]="degrees" class="ngform--field p-dropdown" [style]="{ height: '38px' }"
+          formControlName="degree"></p-dropdown>
         <div *ngIf="userDetailsForm.get('degree')?.invalid">
           Enter Your Qualification
         </div>
@@ -143,12 +88,7 @@
 
       <div class="ngform--field">
         <label class="ngform--field--label">Percentage</label>
-        <input
-          pInputText
-          formControlName="percentage"
-          class="bottom--margin"
-          formControlName="percentage"
-        />
+        <input pInputText formControlName="percentage" class="bottom--margin" formControlName="percentage" />
         <div *ngIf="userDetailsForm.get('percentage')?.invalid">
           Enter valid percentage
         </div>
@@ -156,13 +96,8 @@
 
       <div>
         <label class="ngform--field--label">Select Hobbies:</label>
-        <p-multiSelect
-          class="p-multiselect"
-          [style]="{ width: '100%', height: '38px' }"
-          [options]="hobbies"
-          [showHeader]="false"
-          formControlName="hobby"
-        ></p-multiSelect>
+        <p-multiSelect class="p-multiselect" [style]="{ width: '100%', height: '38px' }" [options]="hobbies"
+          [showHeader]="false" formControlName="hobby"></p-multiSelect>
       </div>
     </div>
 
@@ -170,60 +105,30 @@
       <label class="ngform--field--label">Gender:</label>
 
       <div>
-        <p-radioButton
-          name="gender"
-          value="Male"
-          formControlName="gender"
-          inputId="male"
-        ></p-radioButton
-        ><label for="male" [style]="{ 'margin-right': '1rem' }">Male</label>
+        <p-radioButton name="gender" value="Male" formControlName="gender" inputId="male"></p-radioButton><label
+          for="male" [style]="{ 'margin-right': '1rem' }">Male</label>
 
-        <p-radioButton
-          name="gender"
-          value="Female"
-          formControlName="gender"
-          inputId="female"
-        ></p-radioButton>
+        <p-radioButton name="gender" value="Female" formControlName="gender" inputId="female"></p-radioButton>
         <label for="female">Female</label>
       </div>
     </div>
 
-    <div formArrayName="addresses">
-      <div
-        *ngFor="
-          let addressControl of addresses.controls;
-          let indexOfAddress = index
-        "
-      >
+    <div formArrayName="addressess">
+      <div *ngFor="let addressControl of addressess.controls; let i = index">
         <div class="ngform--field">
-          <label for="addresses" class="ngform--field--label"
-            >Address no. {{ indexOfAddress + 1 }}:</label
-          >
-          <input
-            rows="5"
-            cols="30"
-            pInputTextarea
-            [autoResize]="true"
-            [formControlName]="indexOfAddress"
-          />
-        </div>
+          <label for="addressess" class="ngform--field--label">
+            Address no. {{ i + 1 }}:
+          </label>
+          <input rows="5" cols="30" pInputTextarea [autoResize]="true" formControlName= "address.addAddress" />
+       
+      </div>
       </div>
     </div>
-    <button
-      pButton
-      type="button"
-      (click)="addAddress()"
-      class="btn--address btn--sizing"
-    >
+
+    <button pButton type="button" (click)="addAddress()" class="btn--address btn--sizing">
       Add Address
     </button>
 
-    <button
-      pButton
-      label="Update"
-      class="btn--sizing"
-      icon="pi pi-pencil"
-      (click)="updateUser()"
-    ></button>
+    <button pButton label="Update" class="btn--sizing" icon="pi pi-pencil" (click)="updateUser()"></button>
   </form>
 </div>
