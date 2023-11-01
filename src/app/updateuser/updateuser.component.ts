@@ -5,6 +5,7 @@ import { UserDetailsService } from '../user-details.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Userdata } from '../userdata-interface';
+import { Address } from '../userdata-interface';
 
 @Component({
   selector: 'app-signup',
@@ -39,7 +40,7 @@ export class UpdateuserComponent {
     private router: Router,
     private route: ActivatedRoute,
     private http: HttpClient,
-    private userDetailsService: UserDetailsService
+    public userDetailsService: UserDetailsService
   ) {
     this.userDetailsForm = this.formbuild.group({
       name: [
@@ -60,13 +61,13 @@ export class UpdateuserComponent {
         hobby: [''],
       }),
       gender: [''],
-      addresses: this.formbuild.array([]),
+      addressess: this.formbuild.array([]),
     });
     this.todayDate.setDate(this.todayDate.getDate());
   }
 
-  get addresses() {
-    return this.userDetailsForm.get('addresses') as FormArray;
+  get addressess() {
+    return this.userDetailsForm.get('addressess') as FormArray;
   }
 
   // addAddress() {
@@ -78,35 +79,34 @@ export class UpdateuserComponent {
     const newAddress = this.formbuild.group({
       addedAddress: ''
     })
-    this.addresses.push(newAddress);
+    this.addressess.push(newAddress);
   }
 
-
+ 
   ngOnInit() {
     const userId = this.route.snapshot.params['id'];
-console.log("hiii")
+
     if (userId) {
-      // console.log(userId);
-      console.log("hiii")
       this.http
-        .get<Userdata>('http://localhost:3000/signup' + '/' + userId)
-        .subscribe((formData) => {
-         
-
-            console.log("hello");
-
-            // for (const add of formData.address) {
-            //   console.log(add);
-            //   // this.addresses;
-            //   // const lastIndex = this.addresses.length - 1;
-            //   // this.addresses.at(lastIndex).setValue(address); 
-            // }
-          
-        
-          this.userDetailsForm.patchValue(formData);
-        });
+      .get<Userdata>('http://localhost:3000/signup' + '/' + userId)
+      .subscribe((formData) => {
+        if (formData.addressess && Array.isArray(formData.addressess)) {
+          while (this.addressess.length !== 0) {
+            this.addressess.removeAt(0);
+          }
+          formData.addressess.forEach((address) => {
+            const addressGroup = this.formbuild.group({
+              addedAddress: [address.addedAddress]
+            });
+            this.addressess.push(addressGroup);
+          });
+        }
+        this.userDetailsForm.patchValue(formData);
+      });
+    
     }
   }
+  
 
   updateUser() {
     const userId = this.route.snapshot.params['id'];
@@ -125,3 +125,4 @@ console.log("hiii")
     }
   }
 }
+
