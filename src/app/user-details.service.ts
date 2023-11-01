@@ -23,7 +23,7 @@ interface userdata {
     };
   };
   gender?: string;
-  address: { addedAddress: string }[];
+  addressess: { addedAddress: string }[];
   summary?: string;
 }
 
@@ -31,8 +31,8 @@ interface userdata {
   providedIn: 'root',
 })
 export class UserDetailsService {
-  private userDetails!: userdata;
-  private addresses: string[] = [];
+  public userDetails!: userdata;
+  private addressess: string[] = [];
   private userDetailsSubject = new BehaviorSubject<userdata>({} as userdata); //  emits current userdertials to subscriber
   userDetailsObservable$ = this.userDetailsSubject.asObservable();
 
@@ -43,10 +43,10 @@ export class UserDetailsService {
   }
 
   getAddresses(): string[] {
-    return this.addresses;
+    return this.addressess;
   }
 
-  setAddresses(addresses: string[]) {
-    this.addresses = addresses;
+  setAddresses(addressess: string[]) {
+    this.addressess = addressess;
   }
 }
