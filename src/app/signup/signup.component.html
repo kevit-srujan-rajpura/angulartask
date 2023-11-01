@@ -161,10 +161,10 @@
       </div> 
 
     </div>
-    <div formArrayName="addresses">
-      <div *ngFor="let addressControl of addresses.controls; let i = index">
+    <div formArrayName="addressess">
+      <div *ngFor="let addressControl of addressess.controls; let i = index">
         <div class="ngform--field">
-          <label for="addresses" class="ngform--field--label"
+          <label for="addressess" class="ngform--field--label"
             >Address no. {{ i + 1 }}:</label
           >
           <input
@@ -187,16 +187,6 @@
       Add Address
     </button>
 
-    <div class="ngform--field">
-      <label for="summary" class="ngform--field--label">Summary:</label>
-      <textArea
-        pInputTextarea
-        [autoResize]="true"
-        id="summary"
-        formControlName="summary"
-        class="bottom--margin"
-      ></textArea>
-    </div>
 
     <button
       pButton
