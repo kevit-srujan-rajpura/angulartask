@@ -20,5 +20,10 @@ export interface Userdata{
       };
     };
     gender?: string;
-    address?: { addedAddress: string }[];
+    addressess?: { addedAddress: string }[];
+}
+
+export interface Address {
+  addedAddress: string;
+
 }
