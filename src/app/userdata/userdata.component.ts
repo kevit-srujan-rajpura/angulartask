@@ -4,6 +4,7 @@ import { UserDetailsService } from '../user-details.service';
 import { HttpClient } from '@angular/common/http';
 import { Userdata } from '../userdata-interface';
 import { FormGroup } from '@angular/forms';
+import { Address } from '../userdata-interface';
 
 @Component({
   selector: 'app-show-details',
@@ -31,6 +32,14 @@ export class UserdataComponent implements OnInit {
           .subscribe((formData) => {
             console.log(formData);
             this.userDetails = formData;
+
+            // for(let address in this.userDetails?.addresses){
+            //   if(this.formUserData.address[address]){
+            //     this.userAddress += `  ${this.formUserData.address[address].addedAddress}\n\n`;
+            //   }
+            // }
+
+
           });
       }
     });
