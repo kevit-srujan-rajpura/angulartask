@@ -1,0 +1,116 @@
+html {
+  height: 100%;
+}
+
+.main__header {
+  position: fixed;
+}
+
+.routing--links {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.routing--links--text {
+  font-size: 1rem;
+}
+
+.responsive--header {
+  display: none;
+}
+
+.product--display {
+  background-image: url(mbg.jpg);
+  opacity: 1;
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow-y: hidden;
+}
+
+.background--heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15%;
+  font-size: 4rem;
+  color: rgba(360, 360, 360, 1);
+  text-shadow: 5px 5px 20px black;
+  animation: animate 15s linear infinite;
+}
+
+.btn--getstarted {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 10px 10px 50px black;
+}
+
+@keyframes animate {
+  0% {
+    opacity: 0.9;
+    color: #3f51b5;
+  }
+  50% {
+    opacity: 1;
+    color: white;
+  }
+  80% {
+    opacity: 0.9;
+    color: #3f51b5;
+  }
+  100% {
+    opacity: 1;
+    color: white;
+  }
+}
+
+@media screen and (max-width: 481px) {
+  .main__header {
+    font-size: 1rem;
+    background-color: transparent;
+    position: fixed;
+  }
+
+  .background--heading {
+    font-size: 3rem;
+  }
+
+  .routing--links--text {
+    font-size: 1rem;
+  }
+
+  .btn--getstarted {
+    width: 8rem;
+    height: 3rem;
+  }
+
+  .responsive--header {
+    display: flex;
+    position: fixed;
+  }
+
+  .mystore--name {
+    display: none;
+  }
+
+  .routing--links {
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 11rem;
+    width: 100%;
+    font-weight: 900;
+  }
+
+  .product--display {
+    height: 100vh;
+    overflow: hidden;
+  }
+}

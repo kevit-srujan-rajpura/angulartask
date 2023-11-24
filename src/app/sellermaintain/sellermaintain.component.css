@@ -1,0 +1,140 @@
+.main__container {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background-image: url("https://wallpaperaccess.com/full/2338249.jpg");
+  background-size: cover;
+  opacity: 1;
+}
+.backbtn {
+  display: flex;
+  width: 47.5%;
+  align-items: center;
+  justify-content: flex-start;
+}
+.main__header {
+  position: sticky;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.usertype--title {
+  color: white;
+  font-size: 1rem;
+}
+
+.main {
+  display: flex;
+  height: 86.4%;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-image: url("https://wallpaperaccess.com/full/2338249.jpg");
+  overflow: hidden;
+}
+
+.breadcrumb {
+  font-size: 1rem;
+}
+
+.one {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border: 1px white;
+}
+
+.two {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.image--intro {
+  width: 20rem;
+  height: 20rem;
+  background-image: url(https://media.istockphoto.com/id/1195945432/vector/grocery-store-delivery-flat-vector-illustration.jpg?s=612x612&w=0&k=20&c=DSva-uMBNOqg8vmjVpQBvs23TCr7Boyl8zscioIVjB0=);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.image--intro2 {
+  width: 20rem;
+  height: 20rem;
+  background-image: url(imgg.avif);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 902px) {
+  .image--intro {
+    width: 15rem;
+    height: 15rem;
+  }
+
+  .image--intro2 {
+    width: 15rem;
+    height: 15rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .image--intro {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  .image--intro2 {
+    width: 10rem;
+    height: 10rem;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .image--intro {
+    width: 8rem;
+    height: 10rem;
+  }
+
+  .image--intro2 {
+    width: 8rem;
+    height: 10rem;
+  }
+}
+
+
+@media screen and (max-width: 1024px) {
+  .backbtn {
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .backbtn {
+    width: 44%;
+  }
+}
+
+@media screen and (max-width: 543px) {
+  .backbtn {
+    width: 41%;
+  }
+}
+
+@media screen and (max-width: 481px) {
+  .backbtn {
+    width: 40%;
+  }
+
+
+  .breadcrumb {
+    font-size: 0.7rem;
+  }
+}

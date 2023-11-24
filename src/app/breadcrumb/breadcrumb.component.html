@@ -1,0 +1,6 @@
+<div class="breadcrumb">
+    <span mat-button *ngFor="let breadcrumb of breadcrumbArray; index as index" > 
+      <a class="breadcrumb--routelink" [routerLink]="breadcrumb.link">{{ breadcrumb.label }}</a> 
+      <span *ngIf="index !== breadcrumbArray.length-1"> > </span>
+    </span>
+</div>

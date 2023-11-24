@@ -1,0 +1,140 @@
+.backbtn {
+  display: flex;
+  width: 47%;
+  align-items: center;
+  justify-content: flex-start;
+}
+.main__header {
+  position: static;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.breadcrumb {
+  font-size: 1rem;
+}
+
+.main__content {
+  display: flex;
+  height: 86.4%;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-image: url("https://wallpaperaccess.com/full/2338249.jpg");
+  overflow: hidden;
+}
+
+.image--buyer {
+  width: 20rem;
+  height: 20rem;
+  background-image: url(https://img.freepik.com/premium-vector/man-using-phone-shopping-online-with-ecommerce_51635-8656.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.image--seller {
+  width: 20rem;
+  height: 20rem;
+  background-image: url(https://media.istockphoto.com/id/1195945432/vector/grocery-store-delivery-flat-vector-illustration.jpg?s=612x612&w=0&k=20&c=DSva-uMBNOqg8vmjVpQBvs23TCr7Boyl8zscioIVjB0=);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.div--title {
+  color: white;
+  font-size: 1rem;
+}
+
+.div--buyer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border: 1px white;
+}
+
+.div--seller {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+@media screen and (max-width: 902px) {
+  .image--buyer {
+    width: 15rem;
+    height: 15rem;
+  }
+
+  .image--seller {
+    width: 15rem;
+    height: 15rem;
+  }
+
+  .div--buyer {
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .div--seller {
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .image--buyer {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  .image--seller {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  .backbtn {
+    width: 44%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .image--buyer {
+    width: 8rem;
+    height: 10rem;
+  }
+
+  .image--seller {
+    width: 8rem;
+    height: 10rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .backbtn {
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 543px) {
+  .backbtn {
+    width: 41%;
+  }
+}
+
+@media screen and (max-width: 481px) {
+  .backbtn {
+    width: 40%;
+  }
+}

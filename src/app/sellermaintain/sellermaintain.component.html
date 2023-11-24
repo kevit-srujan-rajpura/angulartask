@@ -1,0 +1,97 @@
+<!-- <div class="main__container" *ngIf="issellerLogged">
+  <div>
+    <mat-toolbar color="primary" class="main__header">
+      <div class="backbtn"></div>
+      <span>MyStore</span>
+      <span class="material-symbols-outlined"> storefront </span>
+    </mat-toolbar>
+
+    <mat-toolbar class="main__header">
+      <app-breadcrumb
+        [breadcrumbArray]="navigationArray"
+        class="breadcrumb"
+      ></app-breadcrumb>
+    </mat-toolbar>
+  </div>
+
+  <mat-grid-list cols="2" rowHeight="1:1">
+    <mat-grid-tile>
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>Sell Your Product </mat-card-title>
+
+            <img
+              mat-card-xl-image
+              src="https://media.istockphoto.com/id/1195945432/vector/grocery-store-delivery-flat-vector-illustration.jpg?s=612x612&w=0&k=20&c=DSva-uMBNOqg8vmjVpQBvs23TCr7Boyl8zscioIVjB0="
+            />
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+          <button mat-raised-button color="primary" (click)="sellProduct()">
+            Sell
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>Manage Your Product</mat-card-title>
+
+            <img
+              mat-card-xl-image
+              src="https://sirv.sirv.com/blog/image%20seo/2456071.png?cw=100.0000%25&ch=100.0000%25&scale.option=fill&w=400&h=0"
+            />
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+          <button mat-raised-button color="accent" (click)="manageProduct()">
+            Manage
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div> -->
+
+
+
+<mat-toolbar color="primary" class="main__header">
+  <div class="backbtn"></div>
+  <span>MyStore</span>
+  <span class="material-symbols-outlined"> storefront </span>
+</mat-toolbar>
+
+<mat-toolbar class="main__header">
+  <app-breadcrumb
+    [breadcrumbArray]="navigationArray"
+    class="breadcrumb"
+  ></app-breadcrumb>
+</mat-toolbar>
+
+<div class="main">
+  <div class="one">
+    <div class="usertype--title">Sell Product</div>
+    <hr />
+    <div class="image--intro"></div>
+    <hr />
+    <div>
+      <button mat-raised-button color="accent" (click)="sellProduct()">
+        Sell
+      </button>
+    </div>
+  </div>
+  <div class="two">
+    <div class="usertype--title">Manage Product</div>
+    <hr />
+    <div class="image--intro2"></div>
+    <hr />
+    <div>
+      <button mat-raised-button color="primary" (click)="manageProduct()">
+        Manage
+      </button>
+    </div>
+  </div>
+</div>

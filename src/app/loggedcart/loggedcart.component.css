@@ -1,0 +1,92 @@
+.product--img {
+  height: 10rem;
+}
+
+.breadcrumb {
+  font-size: 1rem;
+}
+
+.main__header {
+  position: sticky;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+.backbtn {
+  display: flex;
+  width: 47%;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.main__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100vw;
+}
+
+.quantity--handle{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin-top: 3rem;
+  justify-content: center;
+}
+
+th,
+tr,
+td {
+  text-align: center;
+  width: 16%;
+}
+
+.quantity--field {
+  border: 1px solid;
+  width: 4rem;
+  height: 1rem;
+  margin: 1rem;
+}
+
+.buttons__field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon--spacing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn--spacing {
+  display: flex;
+  justify-content: center;
+  margin: 3rem;
+}
+
+
+@media screen and (max-width: 1024px) {
+  .backbtn {
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .backbtn {
+    width: 44%;
+  }
+}
+
+@media screen and (max-width: 543px) {
+  .backbtn {
+    width: 41%;
+  }
+}
+
+@media screen and (max-width: 481px) {
+  .backbtn {
+    width: 40%;
+  }
+}

@@ -1,0 +1,88 @@
+.main-div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 90%;
+  margin-inline-start: 5%;
+  margin-inline-end: 1%;
+  padding: 2rem;
+  position: absolute;
+}
+.second--div {
+  display: flex;
+  max-width: 400px;
+  max-height: 400px;
+  padding: 9px;
+}
+
+.breadcrumb {
+  font-size: 1rem;
+}
+
+.btn--edit {
+  margin: 5px;
+}
+.btn--remove {
+  margin: 5px;
+}
+
+.sellerview--title {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  align-items: center;
+  font-size: 2.5rem;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 500;
+  text-shadow: 5px 5px 8px #3f51b5;
+  margin: 2rem;
+}
+
+.backbtn {
+  display: flex;
+  width: 48%;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+@media screen and (max-width: 1024px) {
+  .backbtn {
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .second--div {
+    max-width: 410px;
+    max-height: 400px;
+  }
+
+  .backbtn {
+    width: 44%;
+  }
+}
+
+@media screen and (max-width: 481px) {
+  .backbtn {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 536px) {
+  .sellerview--title {
+    font-size: 2rem;
+    margin: 1rem;
+  }
+
+  .backbtn {
+    width: 41%;
+  }
+}
+
+@media screen and (max-width: 536px) {
+  .breadcrumb {
+    font-size: 0.7rem;
+  }
+}

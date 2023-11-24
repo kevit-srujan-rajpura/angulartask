@@ -1,0 +1,38 @@
+<div class="main__container">
+  <mat-toolbar color="primary" class="responsive--header">
+    MyStore
+    <span class="material-symbols-outlined"> storefront </span></mat-toolbar
+  >
+
+  <mat-toolbar color="primary" class="main__header">
+    <span class="mystore--name">MyStore</span>
+    <span class="material-symbols-outlined mystore--name"> storefront </span>
+    <div class="routing--links">
+    
+      <button mat-button class="material-symbols-outlined" (click)="openCart()">
+       Cart <mat-icon>shopping_cart</mat-icon>
+      </button>
+
+      <button mat-button class="material-symbols-outlined" (click)="logOut()">
+        <mat-icon>logout</mat-icon>Logout
+      </button>
+
+    </div>
+  </mat-toolbar>
+  <div class="product--display">
+    <h1 class="background--heading">
+      MyStore
+      <span class="material-symbols-outlined background--heading"
+        >shopping_cart</span
+      >
+    </h1>
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn--getstarted"
+      (click)="productDisplay()"
+    >
+      Get Started
+    </button>
+  </div>
+</div>

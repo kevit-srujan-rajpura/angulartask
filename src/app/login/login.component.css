@@ -1,0 +1,104 @@
+.main__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url(login.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.main__header {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+}
+
+.img {
+  display: flex;
+  background-image: url(shoppy.jpg);
+  height: 100%;
+  width: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.login--page {
+  width: 600px;
+  height: 600px;
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 1);
+  background-color: white;
+  transition: box-shadow 0.3s ease;
+  opacity: 0.9;
+  border-radius: 30px;
+}
+.title--name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 550;
+}
+
+.toolbar--title {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.login--page:hover {
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.7);
+}
+
+.form--container {
+  margin-top: 30px;
+}
+
+.input--width {
+  width: 100%;
+}
+
+.email__field,
+.password__field {
+  margin-bottom: 10px;
+}
+
+.button__field {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.btn--login {
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.reg--link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+}
+
+
+.pass--icon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .login--page {
+    width: 80%;
+    height: 80%;
+  }
+}
+
+@media (max-width: 481px) {
+  .login--page {
+    width: 100%;
+    height: 80%;
+    border-radius: 0px;
+  }
+}

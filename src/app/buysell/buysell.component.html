@@ -1,0 +1,42 @@
+
+<mat-toolbar color="primary" class="main__header">
+  <div class="backbtn"></div>
+  <span>MyStore</span>
+  <span class="material-symbols-outlined"> storefront </span>
+</mat-toolbar>
+
+<mat-toolbar class="main__header">
+  <app-breadcrumb
+    [breadcrumbArray]="navigationArray"
+    class="breadcrumb"
+  ></app-breadcrumb>
+</mat-toolbar>
+
+<div class="main__content">
+
+
+  <div class="div--buyer">
+    <div class="div--title">Buyer Login</div>
+    <hr />
+    <div class="image--buyer"></div>
+    <hr />
+    <div>
+      <button mat-raised-button color="accent" (click)="buyerLogin()">
+        Login
+      </button>
+    </div>
+  </div>
+  <div class="div--seller">
+    <div class="div--title">Seller Login</div>
+    <hr />
+    <div class="image--seller"></div>
+    <hr />
+    <div>
+      <button mat-raised-button color="primary" (click)="sellerLogin()">
+        Login
+      </button>
+    </div>
+  </div>
+
+
+</div>

@@ -1,0 +1,136 @@
+<div class="main__container">
+  <mat-card class="login--page">
+    <app-breadcrumb [breadcrumbArray]="navigationArray" class="breadcrumb"></app-breadcrumb>
+    <hr>
+    <h1 class="title--name">Update Product Details {{ this.productname }}</h1>
+
+    <div class="form--container">
+      <form
+        #productForm="ngForm"
+        (ngSubmit)="updateproduct(productForm.value)"
+        ngForm
+      >
+        <div class="input__field">
+          <mat-form-field class="input--width">
+            <input
+              matInput
+              placeholder="Product Name *"
+              type="text"
+              required
+              [(ngModel)]="productname"
+              name="productname"
+              #productnameField="ngModel"
+            />
+          </mat-form-field>
+          <div
+            class="name-error"
+            *ngIf="productnameField.invalid && productnameField.touched"
+          >
+            <mat-error> Please enter a valid Product Name </mat-error>
+          </div>
+        </div>
+
+        <div class="input__field">
+          <mat-form-field class="input--width">
+            <input
+              matInput
+              placeholder="Available Quantity *"
+              type="number"
+              required
+              [(ngModel)]="quantity"
+              name="quantity"
+              #quantityField="ngModel"
+              min="0"
+              max="100"
+            />
+          </mat-form-field>
+          <div
+            class="name-error"
+            *ngIf="quantityField.invalid && quantityField.touched"
+          >
+            <mat-error> Please enter a Quantity for your Product </mat-error>
+          </div>
+        </div>
+
+        <div class="input__field">
+          <mat-form-field class="input--width">
+            <input
+              matInput
+              placeholder="Price *"
+              type="number"
+              required
+              [(ngModel)]="price" 
+              name="price"
+              #priceField="ngModel"
+              min="0"
+              max="100"
+            />
+          </mat-form-field>
+          <div
+            class="name-error"
+            *ngIf="priceField.invalid && priceField.touched"
+          >
+            <mat-error> Please enter a Price for your Product </mat-error>
+          </div>
+        </div>
+
+        <div class="input__field">
+          <mat-form-field class="input--width">
+            <input
+              matInput
+              placeholder="URL of Image *"
+              type="url"
+              required
+              [(ngModel)]="url"
+              name="url"
+              #urlField="ngModel"
+            />
+          </mat-form-field>
+          <div class="name-error" *ngIf="urlField.invalid && urlField.touched">
+            <mat-error> Please enter a valid Url </mat-error>
+          </div>
+        </div>
+
+        <div class="input__field">
+          <mat-form-field class="input--width">
+            <textarea
+              matInput
+              placeholder="Product Description *"
+              type="text"
+              required
+              [(ngModel)]="description"
+              name="description"
+              #descriptionField="ngModel"
+            >
+            </textarea>
+          </mat-form-field>
+        </div>
+
+        <div class="button__field">
+          <button
+            mat-flat-button
+            color="accent"
+            class="btn--login"
+            type="reset"
+          >
+            Reset
+          </button>
+        </div>
+
+        <div class="button__field">
+          <button
+            mat-flat-button
+            color="primary"
+            [disabled]="productForm.invalid"
+            class="btn--login"
+            type="submit"
+          >
+            Update Product
+          </button>
+        </div>
+
+        <br />
+      </form>
+    </div>
+  </mat-card>
+</div>

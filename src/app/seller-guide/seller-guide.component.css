@@ -1,0 +1,140 @@
+.main__container {
+  display: flex;
+  width: 100vw;
+  height: 86%;
+  flex-wrap: wrap;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+.backbtn {
+  display: flex;
+  width: 47.5%;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.breadcrumb{
+  font-size: 1rem;
+}
+
+.main__header {
+  position: sticky;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 100vw;
+  height: 7%;
+}
+
+.guide--step {
+  height: 10%;
+  width: 25%;
+  flex-wrap: wrap;
+  font-family: "Raleway", sans-serif;
+  background-repeat: no-repeat;
+  background-size: contain;
+  overflow: hidden;
+  font-size: 1rem;
+  font-weight: 550;
+  margin: 5px;
+}
+
+.eleven h1 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  text-align: center;
+  line-height: 1.5em;
+  padding-bottom: 45px;
+  font-family: "Playfair Display", serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #111;
+}
+
+.eleven h1:before {
+  position: absolute;
+  left: 0;
+  bottom: 20px;
+  width: 60%;
+  left: 50%;
+  margin-left: -30%;
+  height: 1px;
+  content: "";
+  background-color: #777;
+  z-index: 4;
+}
+.eleven h1:after {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: 50%;
+  margin-left: -20px;
+  bottom: 0px;
+  content: "\00a7";
+  font-size: 30px;
+  line-height: 40px;
+  color: #c50000;
+  font-weight: 400;
+  z-index: 5;
+  display: block;
+  background-color: #f8f8f8;
+}
+
+.eleven {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+  font-weight: 300;
+  font-size: 40px;
+  color: #080808;
+  -webkit-transition: all 0.4s ease 0s;
+  -o-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+}
+
+@media screen and (max-width: 1200px) {
+  .guide--step {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .guide--step {
+    width: 50%;
+  }
+
+  .backbtn {
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .guide--step {
+    width: 60%;
+    height: 15%;
+  }
+
+  .backbtn {
+    width: 44%;
+  }
+}
+
+@media screen and (max-width: 543px) {
+  .backbtn {
+    width: 41%;
+  }
+}
+
+@media screen and (max-width: 481px) {
+  .guide--step {
+    width: 80%;
+  }
+
+  .backbtn {
+    width: 40%;
+  }
+}

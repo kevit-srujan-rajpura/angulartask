@@ -1,0 +1,101 @@
+<div>
+  <mat-toolbar color="primary" class="main__header">
+    <div class="backbtn"></div>
+    <span>MyStore</span>
+    <span class="material-symbols-outlined"> storefront </span>
+  </mat-toolbar>
+
+  <mat-toolbar class="main__header">
+    <app-breadcrumb
+      [breadcrumbArray]="navigationArray"
+      class="breadcrumb"
+    ></app-breadcrumb>
+  </mat-toolbar>
+</div>
+
+<div class="main__container">
+  <hr />
+  <table *ngIf="!isCartEmpty">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total Price</th>
+        <th>Remove Item</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let product of cartData">
+        <th>
+          <img
+            src="{{ product.url }}"
+            pattern=".+\.(jpg|jpeg|png|gif)$"
+            class="product--img"
+          />
+        </th>
+        <td>{{ product.productname }}</td>
+        <td>{{ product.price | currency : "INR" }}</td>
+
+        <td class="quantity--handle">
+          <button
+            mat-mini-fab
+            color="accent"
+            (click)="decrementQty(product)"
+          >
+            <span class="material-symbols-outlined icon--spacing">
+              remove
+            </span>
+          </button>
+          <input
+            type="text"
+            [value]="product.product_quantity"
+            class="quantity--field"
+          />
+          <button mat-mini-fab color="primary" (click)="incrementQty(product)">
+            <span class="material-symbols-outlined icon--spacing"> add </span>
+          </button>
+        </td>
+
+        <td>
+          {{ this.product.price * product.product_quantity | currency : "INR" }}
+        </td>
+        <td>
+          <button
+            mat-mini-fab
+            color="accent"
+            (click)="removeItem(this.product.id)"
+          >
+            <span class="material-symbols-outlined icon--spacing">
+              delete
+            </span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="buttons__field">
+  <button
+    mat-raised-button
+    color="warn"
+    (click)="exploreProducts()"
+    class="btn--spacing"
+    *ngIf="!isCartEmpty"
+  >
+    Explore More Products
+  </button>
+
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="buyProduct()"
+    class="btn--spacing"
+    *ngIf="!isCartEmpty"
+  >
+    Buy
+  </button>
+</div>
